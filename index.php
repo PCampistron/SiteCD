@@ -55,10 +55,9 @@
                     $textP = $row['prix'];
                     echo "<p> $textP </p>";
                     echo "</div>";
-                    echo "</a>";
+                echo "</a>";
                 echo "</div>";
-                
-            echo "<BR>";
+            
             
             
         }
