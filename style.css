@@ -58,6 +58,21 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: large;
 }
+
+.accueil{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:larger;
+}
+
+.invalide{
+    font-size:larger;
+    color: rgb(223, 26, 26);
+}
+
+.valide{
+    font-size:larger;
+    color: rgb(29, 189, 43);
+}
     
 .navbar { grid-area: 1 / 1 / 2 / 6; }
 
