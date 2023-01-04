@@ -4,6 +4,10 @@
     include "menu.php";
     include "conn.php";
     
+    $dest = "img/";
+
+    
+
 
     if(!isset($_SESSION['user']) || !isset($_SESSION['pwd']) || !isset($_SESSION['connecte']))
     {
@@ -28,15 +32,62 @@
 
     if (isset($_POST['inserer']))
     {
-        $id = $_POST['id'];
-        $genre = $_POST['genre'];
-        $titre = $_POST['titre'];
-        $auteur = $_POST['auteur'];
-        $prix = $_POST['prix'];
+        if(!empty($_POST['id']) && !empty($_POST['genre']) && !empty($_POST['titre']) && !empty($_POST['auteur']) && !empty($_POST['prix']))
+        {
+            $id = $_POST['id'];
+            $genre = $_POST['genre'];
+            $titre = $_POST['titre'];
+            $auteur = $_POST['auteur'];
+            $prix = $_POST['prix'];
 
-        $requete = "INSERT INTO CD (id, titre, auteur) VALUES ($id, $titre, $auteur)";
+            $dest = getcwd();
+            
+            $name = $_FILES['imageCD']['name'];
+            $temp_name = $_FILES['imageCD']['tmp_name'];
 
-        $db->exec($requete);
+            if(is_uploaded_file($_FILES["imageCD"]['tmp_name']))
+            {
+                $finalPath = "img/";
+                move_uploaded_file($temp_name, $finalPath.$name);
+            }
+
+            $image = $finalPath.$name;
+            $size = 100;
+
+            $im = imagecreatefromjpeg($image);
+            $dest = imagecreatetruecolor($size, $size);
+
+            imagecopyresampled($dest, $im, 0, 0, 0, 0, $size, $size, imagesx($im), imagesy($im));
+            $nom = explode(".", $name);
+
+            $nomR = $nom[0] . "R." . $nom[1];
+
+            imagejpeg($dest, $finalPath.$nomR);
+
+           
+
+            $lien = $finalPath.$nom[0];
+
+            var_dump($nom);
+
+
+            $requete = $db->prepare("INSERT INTO CD (id, genre, titre, auteur, prix, lienImage) VALUES (:id, :genre, :titre, :auteur, :prix, :lienImage)");
+
+            $requete->bindParam(':id', $id);
+            $requete->bindParam(':titre', $titre);
+            $requete->bindParam(':genre', $genre);
+            $requete->bindParam(':prix', $prix);
+            $requete->bindParam(':auteur', $auteur);
+            $requete->bindParam(':lienImage', $lien);
+
+            $requete->execute();
+        }
+        else
+        {
+            echo "Echec d'insertion";
+        }
+
+        
     } 
 
     if($_POST['user'] == "admin" && $_POST['pwd'] == "pass")
@@ -76,7 +127,7 @@
 
         echo "</form>";
 
-        echo "<form method='post'>";
+        echo "<form method='post'  enctype='multipart/form-data' >";
 
         echo "<p> Id </p>";
         echo "<input type='text' name='id'> </input>";
@@ -92,6 +143,8 @@
 
         echo "<p> Prix </p>";
         echo "<input type='text' name='prix'> </input>";
+
+        echo "<input type='file' name='imageCD' id='image'> </input>";
 
         echo "<input type='submit' name='inserer' value='Insérer'> </input>";
 
