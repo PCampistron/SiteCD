@@ -18,6 +18,7 @@
     <div class="parent">
 
     <?php
+    
         include "conn.php";
 
         echo "<div class ='navbar'>";
@@ -33,18 +34,30 @@
 
         foreach($resultat AS $row)
         {
-
-            $text = $row['titre'] . " - " . $row['auteur'] . " - " . $row['prix'] . "<BR>";
-
+            echo "<div class= 'libelle'";
+                echo "<div class='titre'";
+                $textT = $row['titre'];
+                echo "</div>";
+                echo "<div class='auteur'";
+                $textA = " - " . $row['auteur'];
+                echo "</div>";
+                echo "<div class='prix'";
+                
+                echo "</div>";
+            echo "</div>";
             $url = $row['lienImage'];
+            echo "<BR>";
+        
 
             echo "<a href='cd.php?link=" . $row['id'] . "'>";
 
             echo "<img src='$url" . "R.jpg'>";
 
-            echo $text;
+            echo $textT, $textA, $textP;
 
             echo "</a>";
+            
+            
         }
 
     ?>

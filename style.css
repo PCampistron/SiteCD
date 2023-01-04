@@ -7,7 +7,7 @@
     }
 
 
-.parent .navbar ul {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -15,11 +15,11 @@
     background-color: #333;
 }
     
-.parent .navbar li {
+.navbar li {
         float: left;
     }
     
-.parent .navbar li a {
+.navbar li a {
         display: block;
         color: white;
         text-align: center;
@@ -27,10 +27,29 @@
         text-decoration: none;
     }
     
-    /* Change the link color to #111 (black) on hover */
-.parent .navbar li a:hover {
+
+.navbar li a:hover {
         background-color: #111;
     }
+
+.navbar li {
+    border-right: 1px solid #bbb;
+}
+
+.navbar li:last-child {
+    border-right: none;
+}
+
+
+.libelle .titre{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: medium;
+}
+
+.vide{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+}
     
 .navbar { grid-area: 1 / 1 / 2 / 6; }
 
