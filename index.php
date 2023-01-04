@@ -15,7 +15,6 @@
 </head>
 <body>
     
-    <div class="parent">
 
     <?php
     
@@ -35,36 +34,26 @@
         foreach($resultat AS $row)
         {
         
-                echo "<div class= 'libelle'>";
-
-                echo "<a href='cd.php?link=" . $row['id'] . "'>";
-                $url = $row['lienImage'];
-                echo "<img src='$url" . "R.jpg'>";
-
-                    echo "<div class='titre'>";
+            echo "<a href='cd.php?link=" . $row['id'] . "'>";
+                echo "<div class='cd'>";
+                    $url = $row['lienImage'];
+                    echo "<img src='$url" . "R.jpg' class= 'imageCD' >";
+                    
                     $textT = $row['titre'];
                     echo "<p> $textT </p>";
-                    echo "</div>";
-
-                    echo "<div class='auteur'>";
                     $textA = $row['auteur'];
                     echo "<p> $textA </p>";
-                    echo "</div>";
 
-                    echo "<div class='prix'>";
                     $textP = $row['prix'];
                     echo "<p> $textP </p>";
-                    echo "</div>";
-                echo "</a>";
+
                 echo "</div>";
             
-            
+            echo "</a>";
             
         }
 
     ?>
-
-    </div>
 
 </body>
 </html>
