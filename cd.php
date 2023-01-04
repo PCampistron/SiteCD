@@ -36,7 +36,7 @@
 
         $url = $row['lienImage'];
 
-        echo "<img src='$url" . "R.jpg'>";
+        echo "<img src='$url" . ".jpg'>";
 
         echo $text;
 
