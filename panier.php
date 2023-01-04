@@ -18,8 +18,8 @@
     include "menu.php";
 
     include "conn.php";
-
-    if (isset($_POST['viderPanier']))
+    
+    if (isset($_POST['viderPanier']) || !isset($_SESSION['panier']))
     {
         $_SESSION['panier'] = array();
     } 
