@@ -34,29 +34,31 @@
 
         foreach($resultat AS $row)
         {
-            echo "<div class= 'libelle'";
-                echo "<div class='titre'";
-                $textT = $row['titre'];
-                echo "</div>";
-                echo "<div class='auteur'";
-                $textA = " - " . $row['auteur'];
-                echo "</div>";
-                echo "<div class='prix'";
-                $textP = " - " .$row['prix'];
-                echo "</div>";
-
-            echo "</div>";
-            $url = $row['lienImage'];
-            echo "<BR>";
         
+                echo "<div class= 'libelle'>";
 
-            echo "<a href='cd.php?link=" . $row['id'] . "'>";
+                echo "<a href='cd.php?link=" . $row['id'] . "'>";
+                $url = $row['lienImage'];
+                echo "<img src='$url" . "R.jpg'>";
 
-            echo "<img src='$url" . "R.jpg'>";
+                    echo "<div class='titre'>";
+                    $textT = $row['titre'];
+                    echo "<p> $textT </p>";
+                    echo "</div>";
 
-            echo $textT, $textA, $textP;
+                    echo "<div class='auteur'>";
+                    $textA = $row['auteur'];
+                    echo "<p> $textA </p>";
+                    echo "</div>";
 
-            echo "</a>";
+                    echo "<div class='prix'>";
+                    $textP = $row['prix'];
+                    echo "<p> $textP </p>";
+                    echo "</div>";
+                    echo "</a>";
+                echo "</div>";
+                
+            echo "<BR>";
             
             
         }

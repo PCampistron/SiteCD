@@ -1,7 +1,25 @@
 <?php
     session_start();
 
-    include "menu.php";
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Panier</title>
+</head>
+<body>
+
+<?php
+    echo "<div class ='navbar'>";
+        include "menu.php";
+    echo "</div>";
+
+    echo "<BR>";
+
     include "conn.php";
     
     $dest = "img/";
@@ -112,7 +130,7 @@
         
         echo "<p> Mot de passe </p>";
 
-        echo "<input type='text' name='pwd'> </input>";
+        echo "<input type='password' name='pwd'> </input>";
 
         echo "<input type='submit' value='Connexion'> </input>";
 
