@@ -22,22 +22,22 @@
         include "menu.php";
         echo "</div>";
 
+        echo "<BR>";
+
+    include "conn.php";
     
+    if (isset($_POST['viderPanier']) || !isset($_SESSION['panier']))
+    {
+        $_SESSION['panier'] = array();
+    } 
 
-        if (isset($_POST['viderPanier']))
-        {
-            $_SESSION['panier'] = array();
-        } 
+    if ($_SESSION['panier'] == NULL)
+    {
+        echo "panier vide";
+    }
 
-        if ($_SESSION['panier'] == NULL)
-        {
-            echo "<BR>";
-            echo "<div class= vide>";
-            echo "Votre Panier est vide.";
-            echo "</div>";
-        }
+    $prixTotal = 0;
 
-        $prixTotal = 0;
 
         foreach($_SESSION["panier"] AS $id)
         {
@@ -46,29 +46,39 @@
             $requete->execute();
             $resultat=$requete->fetchAll();
 
+
+
             foreach($resultat AS $row)
             {
-                ob_start();
-                echo "<div class= 'libelle'";
-                echo "<div class='titre'";
-                $textT = $row['titre'];
-                echo "</div>";
-                echo "<div class='auteur'";
-                $textA = " - " . $row['auteur'];
-                echo "</div>";
-                echo "<div class='prix'";
-                
-                echo "</div>";
-            echo "</div>";
-            $url = $row['lienImage'];
-            echo "<BR>";
+                $url = $row['lienImage'];
+                echo "<img src='$url" . "R.jpg'>"; 
         
+                echo "<div class= 'libelle'>";
 
-            echo "<a href='cd.php?link=" . $row['id'] . "'>";
+                    echo "<a href='cd.php?link=" . $row['id'] . "'>";
 
-            echo "<img src='$url" . "R.jpg'>";
+                    echo "<div class='titre'>";
+                    $textT = $row['titre'];
+                    echo "<p> $textT </p>";
+                    echo "</div>";
 
-            echo $textT, $textA, $textP;
+                    echo "<div class='auteur'>";
+                    $textA = " - " . $row['auteur'];
+                    echo "<p> $textA </p>";
+                    echo "</div>";
+
+                    echo "<div class='prix'>";
+                    $textP = " - " .$row['prix'];
+                    echo "<p> $textP </p>";
+                    echo "</div>";
+                    echo "</a>";
+
+                echo "</div>";
+            
+
+
+
+            echo "<BR>";
 
                 $prixTotal += $row['prix'];
             }

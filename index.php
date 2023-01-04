@@ -42,8 +42,9 @@
                 $textA = " - " . $row['auteur'];
                 echo "</div>";
                 echo "<div class='prix'";
-                
+                $textP = " - " .$row['prix'];
                 echo "</div>";
+
             echo "</div>";
             $url = $row['lienImage'];
             echo "<BR>";
