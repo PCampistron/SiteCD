@@ -33,7 +33,9 @@
 
     if ($_SESSION['panier'] == NULL)
     {
-        echo "panier vide";
+        echo "<div class='vide'>";
+        echo "Votre Panier est vide.";
+        echo "</div>";
     }
 
     $prixTotal = 0;
@@ -50,12 +52,13 @@
 
             foreach($resultat AS $row)
             {
-                $url = $row['lienImage'];
-                echo "<img src='$url" . "R.jpg'>"; 
+                 
         
                 echo "<div class= 'libelle'>";
 
                     echo "<a href='cd.php?link=" . $row['id'] . "'>";
+                    $url = $row['lienImage'];
+                    echo "<img src='$url" . "R.jpg'>";
 
                     echo "<div class='titre'>";
                     $textT = $row['titre'];
@@ -63,12 +66,12 @@
                     echo "</div>";
 
                     echo "<div class='auteur'>";
-                    $textA = " - " . $row['auteur'];
+                    $textA = $row['auteur'];
                     echo "<p> $textA </p>";
                     echo "</div>";
 
                     echo "<div class='prix'>";
-                    $textP = " - " .$row['prix'];
+                    $textP = $row['prix'];
                     echo "<p> $textP </p>";
                     echo "</div>";
                     echo "</a>";
