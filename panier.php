@@ -17,6 +17,56 @@
 
     include "menu.php";
 
+    include "conn.php";
+
+    if (isset($_POST['viderPanier']))
+    {
+        $_SESSION['panier'] = array();
+    } 
+
+    if ($_SESSION['panier'] == NULL)
+    {
+        echo "panier vide";
+    }
+
+    $prixTotal = 0;
+
+    foreach($_SESSION["panier"] AS $id)
+    {
+        $requete = $db->prepare("SELECT * FROM CD WHERE id = $id");
+
+        $requete->execute();
+        $resultat=$requete->fetchAll();
+
+        foreach($resultat AS $row)
+        {
+            ob_start();
+            $text = $row['titre'] . " - " . $row['auteur'] . " - " . $row['genre'] . " - " . $row['prix'] . "<BR>";
+
+            $url = $row['lienImage'];
+
+            echo "<img src='$url" . "R.jpg'>";
+
+            echo $text;
+
+            $prixTotal += $row['prix'];
+        }
+    }
+
+    if ($_SESSION['panier'] != NULL)
+    {
+        echo "Prix total : " . $prixTotal . "€";
+
+        echo "<form method='post'  action='panier.php'>";
+
+        echo "<input type='submit' name='viderPanier' id='viderP' value='Vider le panier'>";
+
+        echo "</form>";
+
+        include "sectionpaiement.php";
+    }
+
+    
     ?>
 </body>
 </html>
