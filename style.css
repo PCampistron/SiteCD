@@ -7,9 +7,33 @@
     }
 
 
-
+.parent .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+    
+.parent .navbar li {
+        float: left;
+    }
+    
+.parent .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    /* Change the link color to #111 (black) on hover */
+.parent .navbar li a:hover {
+        background-color: #111;
+    }
     
 .navbar { grid-area: 1 / 1 / 2 / 6; }
+
 .gauche { grid-area: 2 / 1 / 5 / 2; }
 .milieu { grid-area: 2 / 2 / 5 / 5; }
 .droite { grid-area: 2 / 5 / 5 / 6; }
